@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -23,17 +24,17 @@ public class Aluno {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String nome;
+  public String nome;
 
   @Column(unique = true)
-  private String cpf;
+  public String cpf;
 
-  private String bairro;
+  public String bairro;
 
-  private LocalDate dataDeNascimento;
+  public LocalDate dataDeNascimento;
 
   @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
   @JsonIgnore
-  private List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
+  public List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
 
 }

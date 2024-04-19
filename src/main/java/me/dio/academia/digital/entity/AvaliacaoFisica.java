@@ -20,14 +20,14 @@ public class AvaliacaoFisica {
 
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "aluno_id")
-  private Aluno aluno;
+  public Aluno aluno;
 
-  private LocalDateTime dataDaAvaliacao = LocalDateTime.now();
+  public LocalDateTime dataDaAvaliacao = LocalDateTime.now();
 
   @Column(name = "peso_atual")
-  private double peso;
+  public double peso;
 
   @Column(name = "altura_atual")
-  private double altura;
+  public double altura;
 
 }
