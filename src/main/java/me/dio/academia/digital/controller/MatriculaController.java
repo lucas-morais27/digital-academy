@@ -6,6 +6,7 @@ import me.dio.academia.digital.service.MatriculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class MatriculaController {
     }
 
     @PostMapping
-    public Matricula create(@RequestBody MatriculaForm form) {
+    public Matricula create(@Valid @RequestBody MatriculaForm form) {
         return service.create(form);
     }
 
@@ -31,7 +32,7 @@ public class MatriculaController {
     }
 
     @PutMapping("/{id}")
-    public Matricula update(@PathVariable Long id, @RequestBody MatriculaForm form) {
+    public Matricula update(@Valid @PathVariable Long id, @RequestBody MatriculaForm form) {
         return service.update(id, form);
     }
 
