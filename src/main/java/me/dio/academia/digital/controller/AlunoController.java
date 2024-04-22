@@ -30,4 +30,14 @@ public class AlunoController {
     public List<AvaliacaoFisica> getAllAvaliacaoForId(@PathVariable Long id){
         return service.getAllAvaliacaoForId(id);
     }
+
+    @PutMapping("/{id}")
+    public Aluno update(@PathVariable Long id, @RequestBody AlunoForm form) {
+        return service.update(id, form);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
 }

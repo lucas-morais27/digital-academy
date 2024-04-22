@@ -8,6 +8,9 @@ import me.dio.academia.digital.repository.AvaliacaoFisicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AvaliacaoFisicaService {
 
@@ -24,5 +27,32 @@ public class AvaliacaoFisicaService {
     avaliacaoFisica.altura = form.altura;
 
     return avaliacaoFisicaRepository.save(avaliacaoFisica);
+  }
+
+  public List<AvaliacaoFisica> getAll() {
+    return avaliacaoFisicaRepository.findAll();
+  }
+
+  public Optional<AvaliacaoFisica> getById(Long id) {
+    return avaliacaoFisicaRepository.findById(id);
+  }
+
+  public AvaliacaoFisica update(Long id, AvaliacaoFisicaForm form) {
+    Optional<AvaliacaoFisica> optionalAvaliacaoFisica = avaliacaoFisicaRepository.findById(id);
+    if (optionalAvaliacaoFisica.isPresent()) {
+      AvaliacaoFisica avaliacaoFisica = optionalAvaliacaoFisica.get();
+      avaliacaoFisica.setPeso(form.getPeso());
+      avaliacaoFisica.setAltura(form.getAltura());
+      // Talvez você queira adicionar mais lógica de atualização aqui
+
+      return avaliacaoFisicaRepository.save(avaliacaoFisica);
+    } else {
+      // Lidar com o caso em que a avaliação física com o ID fornecido não é encontrada
+      return null; // Ou lançar uma exceção, dependendo do comportamento desejado
+    }
+  }
+
+  public void delete(Long id) {
+    avaliacaoFisicaRepository.deleteById(id);
   }
 }
